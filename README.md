@@ -6,5 +6,18 @@ This repository contains code for the paper "Improving Structural Plausibility i
 ![image](https://github.com/user-attachments/assets/0ea71839-6e0e-4b65-bd1f-4743d876610c)
 
 
+# Datasets
+
+# Models
+For each model, we use the training and sampling scripts provided in their respective repos:
+
+EDM: [repo](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main) [paper](https://proceedings.mlr.press/v162/hoogeboom22a/hoogeboom22a.pdf)
+
+GCDM: [repo](https://github.com/BioinfoMachineLearning/bio-diffusion) [paper](https://www.nature.com/articles/s42004-024-01233-z)
+
+MolFM: [repo](https://github.com/AlgoMole/MolFM) [paper](https://arxiv.org/pdf/2312.07168)
+
+
+
 
 
