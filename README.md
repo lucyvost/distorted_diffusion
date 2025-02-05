@@ -19,7 +19,7 @@ GEOM: downloaded and processed following instructions [here](https://github.com/
 ZINC Subset: Hosted here (link to be added).
 
 # Models
-The dataset augmentation method has been tested on the following models:
+Our conditional method has been tested on the following models:
 
 EDM (E(3) Diffusion Model)
 
@@ -33,13 +33,13 @@ GCDM (Geometry-Complete Diffusion Model)
 
 [Paper](https://www.nature.com/articles/s42004-024-01233-z)
 
-MolFM (Flow Matching for Molecular Generation)
+MolFM
 
-GitHub Repository(https://github.com/AlgoMole/MolFM)
+[GitHub Repository](https://github.com/AlgoMole/MolFM)
 
-Paper(https://arxiv.org/pdf/2312.07168)
+[Paper](https://arxiv.org/pdf/2312.07168)
 
-Each model can be trained and sampled using its original source code without any modifications. Setup instructions for each model's required environment can be found in their respective repositories. This repository contains only the code for adding labeled, distorted molecules to a dataset.
+Each model can be trained and sampled using its original source code without any modifications. Setup instructions for each model's required environment can be found in their respective repositories. 
 
 
 
