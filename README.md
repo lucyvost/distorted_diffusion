@@ -16,7 +16,7 @@ QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeb
 
 GEOM: downloaded and processed following instructions [here](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/data/geom/)
 
-ZINC Subset: Hosted here (link to be added).
+ZINC Subset: Hosted [here](https://zenodo.org/records/14825440).
 
 # Models
 Our conditional method has been tested on the following models:
