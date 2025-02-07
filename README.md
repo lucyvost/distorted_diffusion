@@ -109,15 +109,25 @@ python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --proper
 
 ### Baseline
 
+```sh
+python src/train.py trainer.max_epochs=20 datamodule.dataloader_cfg.batch_size=64
+```
 
 
 ### Conditional
+
+```sh
+python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[alpha]
+```
 
 ## MolFM
 
 ### Baseline
 
+
 ### Conditional
+
+
 
 ## Sampling and assessing pretrained models
 

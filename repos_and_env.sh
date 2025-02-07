@@ -20,4 +20,10 @@ conda activate bio-diffusion  # note: one still needs to use `conda` to (de)acti
 pip3 install -e .
 cd ..
 git clone https://github.com/ehoogeboom/e3_diffusion_for_molecules.git
-git clone https://github.com/AlgoMole/MolFM.git
+# download and extract the code.tar.gz from the specified link
+wget -O supplementary_material.zip "https://openreview.net/attachment?id=hHUZ5V9XFu&name=supplementary_material"
+unzip supplementary_material.zip
+rm supplementary_material.zip
+tar -xzf code.tar.gz
+rm code.tar.gz
+rm supplementary_material.pdf  # delete the PDF file
