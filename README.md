@@ -13,7 +13,7 @@ We use three molecular datasets for evaluation. These can be downloaded using th
 ```sh
 clone git@github.com:lucyvost/distorted_diffusion.git
 bash download_datasets.sh
-
+```
 
 Alternatively, QM9 and GEOM can be downloaded using the EDM repo:
 
