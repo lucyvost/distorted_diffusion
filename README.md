@@ -10,8 +10,10 @@ This repository accompanies the paper "Improving Structural Plausibility in 3D M
 
 We use three molecular datasets for evaluation. These can be downloaded using the download_datasets.sh script:
 
-```clone git@github.com:lucyvost/distorted_diffusion.git
-bash download_datasets.sh```
+```sh
+clone git@github.com:lucyvost/distorted_diffusion.git
+bash download_datasets.sh
+
 
 Alternatively, QM9 and GEOM can be downloaded using the EDM repo:
 
