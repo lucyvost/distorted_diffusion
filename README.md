@@ -21,7 +21,13 @@ QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeb
 
 GEOM: downloaded and processed following instructions [here](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/data/geom/)
 
+## Adding distortion to datasets
 
+To add distorted molecules and labels to a downloaded and preprocessed dataset, run:
+
+```sh
+bash distort_molecules.bash $dataset_folder
+```
 
 
 # Models
@@ -50,7 +56,45 @@ Each model can be trained and sampled using its original source code without any
 bash repos_and_envs.sh
 ```
 
+# Reproducing paper results 
+
+## Baseline EDM
+
+After downloading the GEOM dataset (either with the supplied script or following the repo instructions), train the model on the hydrogen-free GEOM dataset as follows:
+
+```sh
+python main_geom_drugs.py --n_epochs 3000 --exp_name unconditional_geom_no_h --datadir geom --n_stability_samples 500 --diffusion_noise_schedule polynomial_2 --diffusion_steps 1000 --diffusion_noise_precision 1e-5 --diffusion_loss_type l2 --batch_size 64 --nf 256 --n_layers 4 --lr 1e-4 --normalize_factors [1,4,10] --test_epochs 1 --ema_decay 0.9999 --normalization_factor 1 --model egnn_dynamics --visualize_every_batch 10000
+```
+
+and sample using
+
+```sh
+python eval_sample.py --model_path outputs/unconditional_geom_no_h/
+```
+For the ZINC dataset, train the model using
+
+```sh
+python main_qm9.py --n_epochs 3000 --exp_name unconditional_zinc --n_stability_samples 500 --diffusion_noise_schedule polynomial_2 --diffusion_steps 1000 --diffusion_noise_precision 1e-5 --diffusion_loss_type l2 --batch_size 64 --nf 256 --n_layers 4 --lr 1e-4 --normalize_factors [1,4,10] --test_epochs 1 --ema_decay 0.9999 --normalization_factor 1 --model egnn_dynamics --visualize_every_batch 10000 
+```
+
+and sample using
+
+```sh
+python eval_sample.py --model_path outputs/no_scramble_zinc
+```
 
 
+## Conditional EDM
 
+To train a conditional model, run
+
+```sh
+python main_qm9.py --conditioning distortion --dataset qm9_second_half --exp_name conditional_qm9  --model egnn_dynamics --lr 1e-4  --nf 192 --n_layers 9 --save_model True --diffusion_steps 1000 --sin_embedding False --n_epochs 3000 --n_stability_samples 500 --diffusion_noise_schedule polynomial_2 --diffusion_noise_precision 1e-5 --dequantization deterministic --include_charges False --diffusion_loss_type l2 --batch_size 64 --normalize_factors [1,8,1] 
+```
+
+To generate samples for different property values, run
+
+```sh
+python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --property alpha --n_sweeps 10 --task qualitative
+```
 
