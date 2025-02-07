@@ -1,8 +1,6 @@
 # Improving Structural Plausibility in 3D Molecule Generation via Property-Conditioned Training with Distorted Molecules
 
-This repository accompanies the paper "Improving Structural Plausibility in 3D Molecule Generation via Property-Conditioned Training with Distorted Molecules" ([preprint here](https://www.biorxiv.org/content/10.1101/2024.09.17.613136v1)), and provides a Jupyter notebook implementing a dataset augmentation method designed to be combined with conditional generation methods to enhance the plausibility of generated molecules.
-
-Our approach involves introducing distorted molecules into training datasets and annotating each molecule with a label that reflects its level of distortion, and consequently, its structural quality. By training generative models to distinguish between high- and low-quality molecular conformations, we enable selective sampling from high-quality regions of the learned space, resulting in an improvement in the validity of generated molecules. 
+This repository accompanies the paper "Improving Structural Plausibility in 3D Molecule Generation via Property-Conditioned Training with Distorted Molecules" ([preprint here](https://www.biorxiv.org/content/10.1101/2024.09.17.613136v1)). Our approach involves introducing distorted molecules into training datasets and annotating each molecule with a label that reflects its level of distortion, and consequently, its structural quality. By training generative models to distinguish between high- and low-quality molecular conformations, we enable selective sampling from high-quality regions of the learned space, resulting in an improvement in the validity of generated molecules. 
 
 
 ![image](https://github.com/user-attachments/assets/0ea71839-6e0e-4b65-bd1f-4743d876610c)
@@ -10,13 +8,19 @@ Our approach involves introducing distorted molecules into training datasets and
 
 # Datasets
 
-We use three molecular datasets for evaluation:
+We use three molecular datasets for evaluation. These can be downloaded using the download_datasets.sh script:
+
+```clone git@github.com:lucyvost/distorted_diffusion.git
+bash download_datasets.sh```
+
+Alternatively, QM9 and GEOM can be downloaded using the EDM repo:
 
 QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/qm9/data/prepare/qm9.py)
 
 GEOM: downloaded and processed following instructions [here](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/data/geom/)
 
-ZINC Subset: Hosted [here](https://zenodo.org/records/14825440).
+
+
 
 # Models
 Our conditional method has been tested on the following models:
