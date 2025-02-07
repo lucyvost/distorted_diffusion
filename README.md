@@ -8,14 +8,14 @@ This repository accompanies the paper "Improving Structural Plausibility in 3D M
 
 # Datasets
 
-We use three molecular datasets for evaluation. These can be downloaded using the download_datasets.sh script:
+We use three molecular datasets for evaluation. These can be downloaded and processed using the download_datasets.sh script:
 
 ```sh
 clone git@github.com:lucyvost/distorted_diffusion.git
 bash download_datasets.sh
 ```
 
-Alternatively, QM9 and GEOM can be downloaded using the EDM repo:
+Alternatively, QM9 and GEOM can be downloaded and processed using the EDM repo:
 
 QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/qm9/data/prepare/qm9.py)
 
@@ -45,8 +45,10 @@ MolFM
 
 [Paper](https://arxiv.org/pdf/2312.07168)
 
-Each model can be trained and sampled using its original source code without any modifications. Setup instructions for each model's required environment can be found in their respective repositories. 
-
+Each model can be trained and sampled using its original source code without any modifications. To set up an environment that is compatible for all of these modules and clone all three repos, use the repos_and_envs script:
+```sh
+bash repos_and_envs.sh
+```
 
 
 
