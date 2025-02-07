@@ -8,7 +8,11 @@ This repository accompanies the paper "Improving Structural Plausibility in 3D M
 
 # Datasets
 
-We use three molecular datasets for evaluation. These can be downloaded and processed using the download_datasets.sh script:
+## Downloading datasets
+
+We use three molecular datasets for evaluation. To enable comparison with the pretrained baseline models, we follow the same processing and splitting regimes.
+
+All three datasets can be downloaded and processed using the download_datasets.sh script:
 
 ```sh
 clone git@github.com:lucyvost/distorted_diffusion.git
@@ -58,7 +62,10 @@ bash repos_and_envs.sh
 
 # Reproducing paper results 
 
-## Baseline EDM
+## EDM
+
+### Baseline
+
 
 After downloading the GEOM dataset (either with the supplied script or following the repo instructions), train the model on the hydrogen-free GEOM dataset as follows:
 
@@ -84,7 +91,7 @@ python eval_sample.py --model_path outputs/no_scramble_zinc
 ```
 
 
-## Conditional EDM
+### Conditional 
 
 To train a conditional model, run
 
@@ -95,6 +102,33 @@ python main_qm9.py --conditioning distortion --dataset qm9_second_half --exp_nam
 To generate samples for different property values, run
 
 ```sh
-python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --property alpha --n_sweeps 10 --task qualitative
+python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --property distortion --n_sweeps 10 --task qualitative
 ```
+
+## GCDM
+
+### Baseline
+
+
+
+### Conditional
+
+## MolFM
+
+### Baseline
+
+### Conditional
+
+## Sampling and assessing pretrained models
+
+We provide checkpoints for all of the models assessed in the manuscript in [checkpoints](https://github.com/lucyvost/distorted_diffusion/checkpoints). These can each be sampled using the corresponding models code above.
+
+The two pretrained models we used can be found and downloaded at the links below:
+
+[EDM - QM9](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/outputs/edm_qm9)
+
+[GCDM - GEOM](wget https://zenodo.org/record/13375913/files/GCDM_Checkpoints.tar.gz)
+
+
+
 
