@@ -127,7 +127,7 @@ The two pretrained models we used can be found and downloaded at the links below
 
 [EDM - QM9](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/outputs/edm_qm9)
 
-[GCDM - GEOM](wget https://zenodo.org/record/13375913/files/GCDM_Checkpoints.tar.gz)
+[GCDM - GEOM](https://zenodo.org/record/13375913/files/GCDM_Checkpoints.tar.gz)
 
 
 
