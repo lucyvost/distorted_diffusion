@@ -16,6 +16,7 @@ All three datasets can be downloaded and processed using the download_datasets.s
 
 ```sh
 git clone https://github.com/lucyvost/distorted_diffusion.git
+cd distorted_diffusion
 bash download_datasets.sh
 ```
 
