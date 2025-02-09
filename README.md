@@ -122,6 +122,8 @@ python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_c
 
 ## MolFM
 
+Note: 
+
 ### Baseline
 
 
