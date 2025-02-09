@@ -26,13 +26,7 @@ QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeb
 
 GEOM: downloaded and processed following instructions [here](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/data/geom/)
 
-## Adding distortion to datasets
 
-To add distorted molecules and labels to a downloaded and preprocessed dataset, run:
-
-```sh
-bash distort_molecules.bash $dataset_folder
-```
 
 
 # Models
@@ -62,6 +56,14 @@ bash repos_and_envs.sh
 ```
 
 # Reproducing paper results 
+
+## Adding distortion to datasets
+
+To add distorted molecules and labels to a downloaded and preprocessed dataset, run:
+
+```sh
+python distort_molecules.py --datadir $datadir --max_dist 0.25 --ratio_distorted_mols 50
+```
 
 ## EDM
 
