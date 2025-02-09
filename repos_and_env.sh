@@ -1,12 +1,12 @@
 #!/bin/bash
+OS=$(uname -s)
+ARCH=$(uname -m)
+INSTALLER="Miniforge3-24.11.3-0-${OS}-${ARCH}.sh"
 
-
-#this is the setup script for bio-diffusion
-
-wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-bash Mambaforge-$(uname)-$(uname -m).sh  # accept all terms and install to the default location
-rm Mambaforge-$(uname)-$(uname -m).sh  # (optionally) remove installer after using it
-source ~/.bashrc  # alternatively, one can restart their shell session to achieve the same result
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/${INSTALLER}" -O Miniforge.sh
+bash Miniforge.sh -b -p $HOME/miniforge  # accept all terms and install to the default location
+rm Miniforge.sh  # (optionally) remove installer after using it
+source $HOME/miniforge/bin/activate  # alternatively, one can restart their shell session to achieve the same result
 
 # clone project
 git clone https://github.com/BioinfoMachineLearning/bio-diffusion
@@ -28,4 +28,4 @@ unzip supplementary_material.zip
 rm supplementary_material.zip
 tar -xzf code.tar.gz
 rm code.tar.gz
-rm supplementary_material.pdf  # delete the PDF file
+rm Flow_Matching_Generation_with_Appendix.pdf  # delete the PDF file

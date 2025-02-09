@@ -32,19 +32,19 @@ GEOM: downloaded and processed following instructions [here](https://github.com/
 # Models
 Our conditional method has been tested on the following models:
 
-EDM (E(3) Diffusion Model)
+### EDM (E(3) Diffusion Model)
 
 [GitHub Repo](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main) 
 
 [Paper](https://proceedings.mlr.press/v162/hoogeboom22a/hoogeboom22a.pdf)
 
-GCDM (Geometry-Complete Diffusion Model)
+### GCDM (Geometry-Complete Diffusion Model)
 
 [GitHub Repository](https://github.com/BioinfoMachineLearning/bio-diffusion)
 
 [Paper](https://www.nature.com/articles/s42004-024-01233-z)
 
-MolFM
+### MolFM
 
 [GitHub Repository](https://github.com/AlgoMole/MolFM)
 
@@ -52,7 +52,7 @@ MolFM
 
 Each model can be trained and sampled using its original source code without any modifications. To set up an environment that is compatible for all of these modules and clone all three repos, use the repos_and_envs script:
 ```sh
-bash repos_and_envs.sh
+bash repos_and_env.sh
 ```
 
 # Reproducing paper results 
