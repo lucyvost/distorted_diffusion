@@ -15,7 +15,7 @@ We use three molecular datasets for evaluation. To enable comparison with the pr
 All three datasets can be downloaded and processed using the download_datasets.sh script:
 
 ```sh
-clone git@github.com:lucyvost/distorted_diffusion.git
+git clone https://github.com/lucyvost/distorted_diffusion.git
 bash download_datasets.sh
 ```
 

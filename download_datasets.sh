@@ -6,7 +6,8 @@ tar -xzf EDM.tar.gz
 
 rm EDM.tar.gz
 
-# wget https://zenodo.org/records/14825440/files/zinc_dataset.tar.gz
-# mkdir zinc
-# tar -xzvf zinc_dataset.tar.gz -C zinc/
-# rm zinc_dataset.tar.gz
+wget https://zenodo.org/records/14825440/files/zinc_dataset.tar.gz
+mkdir zinc
+tar -xzvf zinc_dataset.tar.gz -C zinc/
+rm zinc_dataset.tar.gz
+mv zinc data/ZINC
