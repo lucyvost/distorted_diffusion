@@ -114,19 +114,19 @@ python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --proper
 #### Baseline
 
 ```sh
-python src/train.py trainer.max_epochs=20 datamodule.dataloader_cfg.batch_size=64
+python src/train.py datamodule.dataloader_cfg.batch_size=64
 ```
 
 
 #### Conditional
 
 ```sh
-python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[alpha]
+python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[distortion]
 ```
 
 ### MolFM
 
-Note: 
+Note: since this work was carried out, the authors have released a docker container available on their repo - for this work, we used the code provided by them as supplementary information [here](https://github.com/AlgoMole/MolFM/issues/1). Below is a guide to running this version of the code - for the new version, please follow the guidance on their repo.
 
 #### Baseline
 
@@ -149,12 +149,11 @@ The two pretrained models we used can be found and downloaded at the links below
 
 ##  Assessing generated molecules
 
-The molecules we generated with each model can be downloaded as follows
-
-[upload to zenodo]
-
-and assessed by running
+The molecules we generated with each model are available in `generated_molecules`. To reproduce the results shown in tables 1-3 of the manuscript, run
 
 ```sh
-bust generated_molecules.sdf 
+python assess_molecules.py generated_molecules/EDM/baseline/qm9/all_generations.sdf
 ```
+
+This will return a table with individual PoseBusters pass rates as well as 95% confidence intervals. Note that due to the large number of molecules and energy calculations of PoseBusters, this script can take up to 40 mins to run for a single set of molecules.
+````
