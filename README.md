@@ -5,30 +5,6 @@ This repository accompanies the paper "Improving Structural Plausibility in 3D M
 
 ![image](https://github.com/user-attachments/assets/0ea71839-6e0e-4b65-bd1f-4743d876610c)
 
-
-# Datasets
-
-## Downloading datasets
-
-We use three molecular datasets for evaluation. To enable comparison with the pretrained baseline models, we follow the same processing and splitting regimes.
-
-All three datasets can be downloaded and processed using the download_datasets.sh script:
-
-```sh
-git clone https://github.com/lucyvost/distorted_diffusion.git
-cd distorted_diffusion
-bash download_datasets.sh
-```
-
-Alternatively, QM9 and GEOM can be downloaded and processed using the EDM repo:
-
-QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/qm9/data/prepare/qm9.py)
-
-GEOM: downloaded and processed following instructions [here](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/data/geom/)
-
-
-
-
 # Models
 Our conditional method has been tested on the following models:
 
@@ -55,9 +31,34 @@ Each model can be trained and sampled using its original source code without any
 bash repos_and_env.sh
 ```
 
+
+# Datasets
+
+We use three molecular datasets for evaluation. To enable comparison with the pretrained baseline models, we follow the same processing and splitting regimes.
+
+All three datasets can be downloaded and processed using the download_datasets.sh script:
+
+```sh
+git clone https://github.com/lucyvost/distorted_diffusion.git
+cd distorted_diffusion
+bash download_datasets.sh
+```
+
+Alternatively, QM9 and GEOM can be downloaded and processed using the EDM repo:
+
+QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/qm9/data/prepare/qm9.py)
+
+GEOM: downloaded and processed following instructions [here](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/data/geom/)
+
+
+
+
+
 # Reproducing paper results 
 
-## Adding distortion to datasets
+## Retraining all models
+
+### Adding distortion to datasets
 
 To add distorted molecules and labels to a downloaded and preprocessed dataset, run:
 
@@ -65,9 +66,9 @@ To add distorted molecules and labels to a downloaded and preprocessed dataset, 
 python distort_molecules.py --datadir $datadir --max_dist 0.25 --ratio_distorted_mols 50
 ```
 
-## EDM
+### EDM
 
-### Baseline
+#### Baseline
 
 
 After downloading the GEOM dataset (either with the supplied script or following the repo instructions), train the model on the hydrogen-free GEOM dataset as follows:
@@ -94,7 +95,7 @@ python eval_sample.py --model_path outputs/no_scramble_zinc
 ```
 
 
-### Conditional 
+#### Conditional 
 
 To train a conditional model, run
 
@@ -108,29 +109,29 @@ To generate samples for different property values, run
 python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --property distortion --n_sweeps 10 --task qualitative
 ```
 
-## GCDM
+### GCDM
 
-### Baseline
+#### Baseline
 
 ```sh
 python src/train.py trainer.max_epochs=20 datamodule.dataloader_cfg.batch_size=64
 ```
 
 
-### Conditional
+#### Conditional
 
 ```sh
 python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[alpha]
 ```
 
-## MolFM
+### MolFM
 
 Note: 
 
-### Baseline
+#### Baseline
 
 
-### Conditional
+#### Conditional
 
 
 
@@ -146,4 +147,14 @@ The two pretrained models we used can be found and downloaded at the links below
 
 
 
+##  Assessing generated molecules
 
+The molecules we generated with each model can be downloaded as follows
+
+[upload to zenodo]
+
+and assessed by running
+
+```sh
+bust generated_molecules.sdf 
+```
