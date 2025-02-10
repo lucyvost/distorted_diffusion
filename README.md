@@ -32,7 +32,7 @@ git clone https://github.com/lucyvost/distorted_diffusion.git
 cd distorted_diffusion
 bash repos_and_env.sh
 ```
-
+This environment was created by the authors of GCDM, and works for training and sampling all three models discussed. It uses mamba, so once created, you may need to add the location of miniforge to your path to activate the environment. For more details, please check out [their repo](https://github.com/BioinfoMachineLearning/bio-diffusion). 
 
 # Datasets
 
@@ -40,13 +40,13 @@ bash repos_and_env.sh
 
 We use three molecular datasets for evaluation. To enable comparison with the pretrained baseline models, we follow the same processing and splitting regimes.
 
-All three datasets can be downloaded and processed using the download_datasets.sh script:
+All three datasets can be downloaded and processed using the download_datasets.sh script. Beware that this takes around 40 mins, and will occupy ~70GB.
 
 ```sh
 bash download_datasets.sh
 ```
 
-Alternatively, QM9 and GEOM can be downloaded and processed using the EDM repo:
+Alternatively, QM9 and GEOM can be individually downloaded and processed using the EDM repo:
 
 QM9: downloaded and processed using [this EDM script](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/qm9/data/prepare/qm9.py)
 

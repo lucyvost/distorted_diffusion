@@ -7,7 +7,7 @@ wget "https://github.com/conda-forge/miniforge/releases/latest/download/${INSTAL
 bash Miniforge.sh -b -p $HOME/miniforge  # accept all terms and install to the default location
 rm Miniforge.sh  # (optionally) remove installer after using it
 source $HOME/miniforge/bin/activate  # alternatively, one can restart their shell session to achieve the same result
-
+conda activate bio-diffusion
 # clone project
 git clone https://github.com/BioinfoMachineLearning/bio-diffusion
 cd bio-diffusion

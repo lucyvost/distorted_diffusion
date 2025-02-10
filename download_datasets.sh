@@ -14,10 +14,11 @@ echo 'downloading and preparing GEOM dataset...'
 echo 'warning! this dataset is large and will take a while to download and process'
 wget https://zenodo.org/records/14843543/files/geom_data.tar.gz
 tar -xzvf geom_data.tar.gz 
+rm geom_data.tar.gz
 python data_scripts/process_GEOM.py
 
-rm geom_data.tar.gz
-mv data/EDM/GEOM/GEOM_permutation.npy data/EDM/GEOM/geom_permutation.npy
+rm -r geom_data
+
 
 echo 'downloading and preparing ZINC subset...'
 wget https://zenodo.org/records/14825440/files/zinc_dataset.tar.gz
