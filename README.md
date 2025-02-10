@@ -28,19 +28,21 @@ Our conditional method has been tested on the following models:
 
 Each model can be trained and sampled using its original source code without any modifications. To set up an environment that is compatible for all of these modules and clone all three repos, use the repos_and_envs script:
 ```sh
+git clone https://github.com/lucyvost/distorted_diffusion.git
+cd distorted_diffusion
 bash repos_and_env.sh
 ```
 
 
 # Datasets
 
+## Downloading datasets
+
 We use three molecular datasets for evaluation. To enable comparison with the pretrained baseline models, we follow the same processing and splitting regimes.
 
 All three datasets can be downloaded and processed using the download_datasets.sh script:
 
 ```sh
-git clone https://github.com/lucyvost/distorted_diffusion.git
-cd distorted_diffusion
 bash download_datasets.sh
 ```
 
@@ -52,19 +54,17 @@ GEOM: downloaded and processed following instructions [here](https://github.com/
 
 
 
-
-
-# Reproducing paper results 
-
-## Retraining all models
-
-### Adding distortion to datasets
+## Adding distortion to datasets
 
 To add distorted molecules and labels to a downloaded and preprocessed dataset, run:
 
 ```sh
 python distort_molecules.py --datadir $datadir --max_dist 0.25 --ratio_distorted_mols 50
 ```
+
+# Reproducing paper results 
+
+## Retraining all models
 
 ### EDM
 
@@ -135,7 +135,7 @@ Note:
 
 
 
-## Sampling and assessing pretrained models
+## Sampling pretrained models
 
 We provide checkpoints for all of the models assessed in the manuscript in [checkpoints](https://github.com/lucyvost/distorted_diffusion/checkpoints). These can each be sampled using the corresponding models code above.
 
