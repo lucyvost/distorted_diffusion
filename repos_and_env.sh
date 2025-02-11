@@ -19,6 +19,7 @@ conda activate bio-diffusion  # note: one still needs to use `conda` to (de)acti
 # install local project as package
 pip3 install -e .
 pip3 install torchdiffeq
+pip3 install zuko
 cd ..
 git clone https://github.com/ehoogeboom/e3_diffusion_for_molecules.git
 
