@@ -6,3 +6,4 @@ bio-diffusion
 data
 efm_gen
 assessment_results.csv
+assess_molecules_copy.py
