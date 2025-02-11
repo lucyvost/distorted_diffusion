@@ -64,83 +64,58 @@ python distort_molecules.py --datadir $datadir --max_dist 0.25 --ratio_distorted
 
 # Reproducing paper results 
 
-## Retraining all models
-
-### EDM
-
-#### Baseline
+## EDM
 
 
-After downloading the GEOM dataset (either with the supplied script or following the repo instructions), train the model on the hydrogen-free GEOM dataset as follows:
+
+After downloading the datasets, train the model on any dataset using `training_scripts/train_edm.sh`, specifying the dataset name (qm9, geom or zinc) and the mode (baseline or conditional). 
 
 ```sh
-python main_geom_drugs.py --n_epochs 3000 --exp_name unconditional_geom_no_h --datadir geom --n_stability_samples 500 --diffusion_noise_schedule polynomial_2 --diffusion_steps 1000 --diffusion_noise_precision 1e-5 --diffusion_loss_type l2 --batch_size 64 --nf 256 --n_layers 4 --lr 1e-4 --normalize_factors [1,4,10] --test_epochs 1 --ema_decay 0.9999 --normalization_factor 1 --model egnn_dynamics --visualize_every_batch 10000
+bash training_scripts/train_edm.sh $dataset $mode
 ```
 
-and sample using
+Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
 
 ```sh
-python eval_sample.py --model_path outputs/unconditional_geom_no_h/
-```
-For the ZINC dataset, train the model using
-
-```sh
-python main_qm9.py --n_epochs 3000 --exp_name unconditional_zinc --n_stability_samples 500 --diffusion_noise_schedule polynomial_2 --diffusion_steps 1000 --diffusion_noise_precision 1e-5 --diffusion_loss_type l2 --batch_size 64 --nf 256 --n_layers 4 --lr 1e-4 --normalize_factors [1,4,10] --test_epochs 1 --ema_decay 0.9999 --normalization_factor 1 --model egnn_dynamics --visualize_every_batch 10000 
+bash sampling_scripts/sample_edm.sh
 ```
 
-and sample using
-
-```sh
-python eval_sample.py --model_path outputs/no_scramble_zinc
-```
-
-
-#### Conditional 
-
-To train a conditional model, run
-
-```sh
-python main_qm9.py --conditioning distortion --dataset qm9_second_half --exp_name conditional_qm9  --model egnn_dynamics --lr 1e-4  --nf 192 --n_layers 9 --save_model True --diffusion_steps 1000 --sin_embedding False --n_epochs 3000 --n_stability_samples 500 --diffusion_noise_schedule polynomial_2 --diffusion_noise_precision 1e-5 --dequantization deterministic --include_charges False --diffusion_loss_type l2 --batch_size 64 --normalize_factors [1,8,1] 
-```
-
-To generate samples for different property values, run
-
-```sh
-python eval_conditional_qm9.py --generators_path outputs/exp_cond_alpha --property distortion --n_sweeps 10 --task qualitative
-```
 
 ### GCDM
 
-#### Baseline
+After downloading the datasets, train the model on any dataset using `training_scripts/train_gcdm.sh`, specifying the dataset name (qm9, geom or zinc) and the mode (baseline or conditional). 
 
 ```sh
-python src/train.py datamodule.dataloader_cfg.batch_size=64
+bash training_scripts/train_gcdm.sh $dataset $mode
 ```
 
-
-#### Conditional
+Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
 
 ```sh
-python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[distortion]
+bash sampling_scripts/sample_gcdm.sh
 ```
+
 
 ### MolFM
 
 Note: since this work was carried out, the authors have released a docker container for their model. For this work, we used the code provided by them as supplementary information [here](https://github.com/AlgoMole/MolFM/issues/1). Below is a guide to running this version of the code - for the new version, please follow the guidance on their repo.
 
-#### Baseline
+After downloading the datasets, train the model on any dataset using `training_scripts/train_edm.sh`, specifying the dataset name (qm9, geom or zinc) and the mode (baseline or conditional). 
 
 ```sh
-python main_qm9.py --batch_size 64 --exp_name geom_no_h --datadir  ./geom/ --test_epochs 1 --dataset geom_no_h 
+bash training_scripts/train_gcdm.sh $dataset $mode
 ```
 
-#### Conditional
+Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
+
 ```sh
-python main_qm9.py --batch_size 64 --exp_name geom_no_h_conditional  --datadir geom_distorted --test_epochs 1 --conditioning scramble --dataset geom_no_h 
+bash sampling_scripts/sample_gcdm.sh
 ```
+
+
 ## Sampling pretrained models
 
-We provide checkpoints for all of the models assessed in the manuscript in [checkpoints](https://github.com/lucyvost/distorted_diffusion/checkpoints). These can each be sampled using the corresponding models code above.
+We provide checkpoints for all of the models assessed in the manuscript in [checkpoints](https://github.com/lucyvost/distorted_diffusion/checkpoints). These can each be sampled using the corresponding shell scripts as shown above.
 
 The two pretrained models we used can be found and downloaded at the links below:
 
@@ -152,11 +127,11 @@ The two pretrained models we used can be found and downloaded at the links below
 
 ##  Assessing generated molecules
 
-The molecules we generated with each model are available in `generated_molecules`. To reproduce the results shown in tables 1-3 of the manuscript, run
+The molecules we generated with each model are available in the `generated_molecules` folder. To reproduce the results shown in tables 1-3 of the manuscript, run
 
 ```sh
-python assess_molecules.py generated_molecules/EDM/baseline/qm9/all_generations.sdf
+python assess_molecules.py $path_to_generations
 ```
 
-This will return a table with individual PoseBusters pass rates as well as 95% confidence intervals. Note that due to the large number of molecules and energy calculations of PoseBusters, this script can take up to 40 mins to run for a single set of molecules.
-````
+This will return a table with individual PoseBusters pass rates as well as 95% confidence intervals. Note that due to the large number of molecules and energy calculations of PoseBusters, this script can take up 40 minutes to run for a single set of molecules.
+
