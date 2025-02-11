@@ -1,12 +1,14 @@
 import sys
+import os
 import pandas as pd
 import numpy as np
 from scipy.stats import bootstrap
 from posebusters import PoseBusters
 
-def main(generations):
+def process_file(file_path):
+    print(f"Processing file: {file_path}")
     buster = PoseBusters(config="mol")
-    df = buster.bust([generations], None, None)
+    df = buster.bust([file_path], None, None)
 
     # Columns to analyze
     columns_to_analyze = [
@@ -72,14 +74,26 @@ def main(generations):
     # Convert to a single-row DataFrame
     results_df = pd.DataFrame([formatted_results], index=["Metrics"])
 
+    # Save the DataFrame to a CSV file in the same directory as the input file
+    output_file_path = os.path.join(os.path.dirname(file_path), "assessment_results.csv")
+    results_df.to_csv(output_file_path)
+    print(f"Results saved to {output_file_path}")
+
     # Print the DataFrame
     print(results_df)
 
+def main(directory):
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".sdf"):
+                file_path = os.path.join(root, file)
+                process_file(file_path)
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python assess_molecules.py <generations>")
+        print("Usage: python assess_molecules.py <directory>")
         sys.exit(1)
     
-    generations = sys.argv[1]
-    main(generations)
+    directory = sys.argv[1]
+    main(directory)
 
