@@ -13,30 +13,30 @@ MODE=$2
 conda activate bio-diffusion
 
 cp ../datasets_config.py ../bio-diffusion/src/datamodules/components/edm/datasets_config.py
-
+cd bio-diffusion
 if [ "$DATASET" == "qm9" ]; then
     if [ "$MODE" == "baseline" ]; then
-        python src/train_qm9_baseline.py
+        python src/train.py experiment=qm9_mol_gen_ddpm.yaml datamodule.dataloader_cfg.data_dir='qm9'
     elif [ "$MODE" == "conditional" ]; then
-        python src/train_qm9_conditional.py
+        python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[scramble] datamodule.dataloader_cfg.data_dir='qm9_distorted' datamodule.dataloader_cfg.dataset='qm9'
     else
         echo "Invalid mode: $MODE"
         exit 1
     fi
 elif [ "$DATASET" == "geom" ]; then
     if [ "$MODE" == "baseline" ]; then
-        python src/train_geom_baseline.py
+        python src/train.py experiment=geom_mol_gen_ddpm.yaml datamodule.dataloader_cfg.data_dir='geom'
     elif [ "$MODE" == "conditional" ]; then
-        python src/train_geom_conditional.py
+        python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[scramble] datamodule.dataloader_cfg.data_dir='geom_distorted' datamodule.dataloader_cfg.dataset='geom' trainer.min_epochs=50 trainer.max_epochs=3000 callbacks.early_stopping.patience=20 model.model_cfg.e_hidden_dim=16 model.model_cfg.xi_hidden_dim=8 model.model_cfg.num_encoder_layers=4 model.diffusion_cfg.norm_values=[]
     else
         echo "Invalid mode: $MODE"
         exit 1
     fi
 elif [ "$DATASET" == "zinc" ]; then
     if [ "$MODE" == "baseline" ]; then
-        python src/train_zinc_baseline.py
+        python src/train.py experiment=qm9_mol_gen_ddpm.yaml datamodule.dataloader_cfg.data_dir='zinc' datamodule.dataloader_cfg.dataset='zinc'
     elif [ "$MODE" == "conditional" ]; then
-        python src/train_zinc_conditional.py
+        python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_cfg.conditioning=[scramble] datamodule.dataloader_cfg.data_dir='zinc_distorted' datamodule.dataloader_cfg.dataset='zinc'
     else
         echo "Invalid mode: $MODE"
         exit 1
