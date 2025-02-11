@@ -77,7 +77,7 @@ bash training_scripts/train_edm.sh $dataset $mode
 Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
 
 ```sh
-bash sampling_scripts/sample_edm.sh
+bash sampling_scripts/sample_edm.sh $path_to_checkpoints
 ```
 
 
@@ -92,7 +92,7 @@ bash training_scripts/train_gcdm.sh $dataset $mode
 Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
 
 ```sh
-bash sampling_scripts/sample_gcdm.sh
+bash sampling_scripts/sample_gcdm.sh $path_to_checkpoints
 ```
 
 
@@ -100,16 +100,16 @@ bash sampling_scripts/sample_gcdm.sh
 
 Note: since this work was carried out, the authors have released a docker container for their model. For this work, we used the code provided by them as supplementary information [here](https://github.com/AlgoMole/MolFM/issues/1). Below is a guide to running this version of the code - for the new version, please follow the guidance on their repo.
 
-After downloading the datasets, train the model on any dataset using `training_scripts/train_edm.sh`, specifying the dataset name (qm9, geom or zinc) and the mode (baseline or conditional). 
+After downloading the datasets, train the model on any dataset using `training_scripts/train_molfm.sh`, specifying the dataset name (qm9, geom or zinc) and the mode (baseline or conditional). 
 
 ```sh
-bash training_scripts/train_gcdm.sh $dataset $mode
+bash training_scripts/train_molfm.sh $dataset $mode
 ```
 
 Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
 
 ```sh
-bash sampling_scripts/sample_gcdm.sh
+bash sampling_scripts/sample_molfm.sh $path_to_checkpoints
 ```
 
 
