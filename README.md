@@ -74,10 +74,10 @@ After downloading the datasets, train the model on any dataset using `training_s
 bash training_scripts/train_edm.sh $dataset $mode
 ```
 
-Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
+Sample the model using `sampling_scripts/sample_edm.sh`, the dataset, mode, and location of the checkpoints.
 
 ```sh
-bash sampling_scripts/sample_edm.sh $path_to_checkpoints
+bash sampling_scripts/sample_edm.sh $path_to_checkpoints $dataset $mode
 ```
 
 
@@ -89,10 +89,10 @@ After downloading the datasets, train the model on any dataset using `training_s
 bash training_scripts/train_gcdm.sh $dataset $mode
 ```
 
-Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
+Sample the model using `sampling_scripts/sample_edm.sh`, specifying the dataset, mode, and location of the checkpoints.
 
 ```sh
-bash sampling_scripts/sample_gcdm.sh $path_to_checkpoints
+bash sampling_scripts/sample_gcdm.sh $path_to_checkpoints $dataset $mode
 ```
 
 
@@ -106,10 +106,10 @@ After downloading the datasets, train the model on any dataset using `training_s
 bash training_scripts/train_molfm.sh $dataset $mode
 ```
 
-Sample the model using `sampling_scripts/sample_edm.sh`, specifying the location of the checkpoints.
+Sample the model using `sampling_scripts/sample_edm.sh`, the dataset, mode, and location of the checkpoints.
 
 ```sh
-bash sampling_scripts/sample_molfm.sh $path_to_checkpoints
+bash sampling_scripts/sample_molfm.sh $path_to_checkpoints $dataset $mode
 ```
 
 
