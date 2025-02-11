@@ -26,7 +26,7 @@ Our conditional method has been tested on the following models:
 
 [Paper](https://arxiv.org/pdf/2312.07168)
 
-Each model can be trained and sampled using its original source code without any modifications. To set up an environment that is compatible for all of these modules and clone all three repos, use the repos_and_envs script:
+Each model can be trained and sampled using its original source code without modification. To set up an environment that is compatible for all of these modules and clone all three repos, use the repos_and_envs script:
 ```sh
 git clone https://github.com/lucyvost/distorted_diffusion.git
 cd distorted_diffusion
@@ -126,15 +126,18 @@ python3 src/train.py experiment=qm9_mol_gen_conditional_ddpm.yaml model.module_c
 
 ### MolFM
 
-Note: since this work was carried out, the authors have released a docker container available on their repo - for this work, we used the code provided by them as supplementary information [here](https://github.com/AlgoMole/MolFM/issues/1). Below is a guide to running this version of the code - for the new version, please follow the guidance on their repo.
+Note: since this work was carried out, the authors have released a docker container for their model. For this work, we used the code provided by them as supplementary information [here](https://github.com/AlgoMole/MolFM/issues/1). Below is a guide to running this version of the code - for the new version, please follow the guidance on their repo.
 
 #### Baseline
 
+```sh
+python main_qm9.py --batch_size 64 --exp_name geom_no_h --datadir  ./geom/ --test_epochs 1 --dataset geom_no_h 
+```
 
 #### Conditional
-
-
-
+```sh
+python main_qm9.py --batch_size 64 --exp_name geom_no_h_conditional  --datadir geom_distorted --test_epochs 1 --conditioning scramble --dataset geom_no_h 
+```
 ## Sampling pretrained models
 
 We provide checkpoints for all of the models assessed in the manuscript in [checkpoints](https://github.com/lucyvost/distorted_diffusion/checkpoints). These can each be sampled using the corresponding models code above.
