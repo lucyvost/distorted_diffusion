@@ -11,10 +11,11 @@ CHECKPOINTS=$1
 DATASET=$2
 MODE=$3
 
+source ~/.bashrc
 conda activate bio-diffusion
 
-cp ../datasets_config.py ../bio-diffusion/configs/datasets_config.py
-cd ../bio-diffusion
+cp dataset_config_files/datasets_config_gcdm.py bio-diffusion/src/datamodules/components/edm/datasets_config.py
+cd bio-diffusion
 
 if [ "$DATASET" == "qm9" ]; then
     if [ "$MODE" == "baseline" ]; then

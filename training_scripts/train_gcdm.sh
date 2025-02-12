@@ -10,9 +10,10 @@ fi
 DATASET=$1
 MODE=$2
 
+source ~/.bashrc
 conda activate bio-diffusion
 
-cp ../datasets_config.py ../bio-diffusion/src/datamodules/components/edm/datasets_config.py
+cp dataset_config_files/datasets_config_gcdm.py bio-diffusion/src/datamodules/components/edm/datasets_config.py
 cd bio-diffusion
 if [ "$DATASET" == "qm9" ]; then
     if [ "$MODE" == "baseline" ]; then

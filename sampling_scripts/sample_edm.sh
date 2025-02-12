@@ -9,10 +9,11 @@ fi
 CHECKPOINTS=$1
 MODE=$2
 
+source ~/.bashrc
 conda activate bio-diffusion
 
-cp ../datasets_config.py ../e3_diffusion_for_molecules/configs/datasets_config.py
-cd ../e3_diffusion_for_molecules
+cp dataset_config_files/datasets_config.py e3_diffusion_for_molecules/configs/datasets_config.py
+cd e3_diffusion_for_molecules
 
 if [ "$MODE" == "baseline" ]; then
     python eval_sample.py --model_path $CHECKPOINTS --n_samples 1000
