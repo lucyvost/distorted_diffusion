@@ -117,12 +117,6 @@ bash sampling_scripts/sample_molfm.sh $path_to_checkpoints $mode
 
 We provide checkpoints for all of the models assessed in the manuscript in [checkpoints](https://github.com/lucyvost/distorted_diffusion/checkpoints). These can each be sampled using the corresponding shell scripts as shown above.
 
-The two pretrained models we used can be found and downloaded at the links below:
-
-[EDM - QM9](https://github.com/ehoogeboom/e3_diffusion_for_molecules/tree/main/outputs/edm_qm9)
-
-[GCDM - GEOM](https://zenodo.org/record/13375913/files/GCDM_Checkpoints.tar.gz)
-
 
 
 ##  Assessing generated molecules
