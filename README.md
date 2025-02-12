@@ -32,7 +32,23 @@ git clone https://github.com/lucyvost/distorted_diffusion.git
 cd distorted_diffusion
 bash repos_and_env.sh
 ```
-This environment was created by the authors of GCDM, and works for training and sampling all three models discussed. It uses mamba, so once created, you may need to add the location of miniforge to your path to activate the environment. For more details, please check out [their repo](https://github.com/BioinfoMachineLearning/bio-diffusion). 
+This environment was created by the authors of GCDM, and includes all packages required for training and sampling all three models discussed:
+
+```sh
+hydra-core=1.2.0
+matplotlib-base=3.4.3
+numpy=1.23.1
+pyg=2.2.0=py39_torch_1.12.0_cu116
+python=3.9.15
+pytorch=1.12.1=py3.9_cuda11.6_cudnn8.3.2_0
+pytorch-cluster=1.6.0=py39_torch_1.12.0_cu116
+pytorch-scatter=2.1.0=py39_torch_1.12.0_cu116
+pytorch-sparse=0.6.16=py39_torch_1.12.0_cu116
+pytorch-lightning=1.7.7
+scikit-learn=1.1.2
+torchmetrics=0.10.2
+```
+ The installation script uses mamba, so once created, you may need to add the location of miniforge to your path to activate the environment.For more details, please check out [their repo](https://github.com/BioinfoMachineLearning/bio-diffusion). 
 
 # Datasets
 
