@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/872009442.svg)](https://doi.org/10.5281/zenodo.15010216)
 # Improving Structural Plausibility in 3D Molecule Generation via Property-Conditioned Training with Distorted Molecules
 
 This repository accompanies the paper "Improving Structural Plausibility in 3D Molecule Generation via Property-Conditioned Training with Distorted Molecules" ([preprint here](https://www.biorxiv.org/content/10.1101/2024.09.17.613136v1)). Our approach involves introducing distorted molecules into training datasets and annotating each molecule with a label that reflects its level of distortion, and consequently, its structural quality. By training generative models to distinguish between high- and low-quality molecular conformations, we enable selective sampling from high-quality regions of the learned space, resulting in an improvement in the validity of generated molecules. 
